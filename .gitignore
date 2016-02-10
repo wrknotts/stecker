@@ -1,0 +1,20 @@
+## Eclipse ##
+.settings/
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Mac
+.DS_Store
+
+# Maven
+target/

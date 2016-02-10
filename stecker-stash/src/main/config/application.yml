@@ -1,0 +1,44 @@
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Stash Configuration
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+stash:
+
+  # True to enable Stash functionality, false to disable. If false, all
+  # endpoints will be disabled.
+  enabled: true
+
+  # Base URL address of Stash instance.
+  baseAddress: https://codecloud.web.att.com
+
+  # URI to image representing repository on Home page.
+  repositoryImage: /images/arcade-codecloud-logo.png
+
+  bookmarklets:
+
+    # Configuration for each bookmarklet should have the following:
+    #  - linkText: text that will be used as the text of the button
+    #    that will be added to the home page allowing the bookmarklet
+    #    to be added to the browser.
+    #  - description: text that will be displayed on the home page as the
+    #    human-readable element that exposes the bookmarklet.
+    #  - relativeFilePath: path to file containing the source code for the
+    #    bookmarklet (this is what is used as the 'link' address).
+    #    NOTE: Path is relative to /bookmarklets/.
+
+    -
+      linkText: CodeCloud Files
+      description: <a href="/stash#files" target="_blank">Adds new buttons</a> to the file browse page of a repository that provide Steckerized embedding links.
+      relativeFilePath: stash/files.js
+    -
+      linkText: CodeCloud Snippets
+      description: <a href="/stash#snippets" target="_blank">Adds new elements</a> to Snippet View page that provide Steckerized embedding links.
+      relativeFilePath: stash/snippets.js
+
+  # True to enable Stash Files support, false to disable.
+  filesEnabled: true
+
+  # True to enable Stash Snippets support, false to disable.
+  snippetsEnabled: true
+
+  # Maximum number of threads used to interact with Stash.
+  maxRepositoryThreads: 10

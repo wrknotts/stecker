@@ -1,0 +1,91 @@
+.stecker .vanity {
+	background: snow;
+	border: 1px solid #D9D9D9;
+	border-top-style: none;
+	color: #aaa;
+	display: block;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: x-small;
+	font-style: italic;
+	height: 20px;
+	padding: 3px 5px 3px 5px;
+	vertical-align: middle;
+}
+
+.stecker .vanity .bold {
+	color: #777;
+	font-size: 120%;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.stecker .vanity .right {
+	color: #777;
+	float: right;
+	font-size: 110%;
+}
+
+.stecker .vanity a:active {
+	color: #777 !important;
+}
+
+.stecker .vanity a:hover {
+	color: #aaa !important;
+}
+
+.stecker .vanity a:link {
+	color: #777;
+	text-decoration: none;
+}
+
+.stecker .vanity a:visited {
+	color: #777 !important;
+}
+
+/* CSS Counters - */
+.stecker pre {
+	background-color: snow !important;
+	border: solid 1px #d9d9d9;
+	counter-reset: line-numbering;
+	border-radius: 0;
+	margin-top: 15px;
+	margin-bottom: 0px;
+	padding-bottom: 6px;
+	line-height: 12px;
+	overflow-x: auto;
+	word-break: inherit;
+	word-wrap: inherit;
+}
+
+.stecker pre a::before {
+	content: counter(line-numbering);
+	counter-increment: line-numbering;
+	padding-right: 1em; /* space after numbers */
+	width: 25px;
+	text-align: right;
+	opacity: 0.7;
+	display: inline-block;
+	color: #aaa;
+	background: #eee;
+	margin-right: 16px;
+	padding: 2px 10px;
+	font-size: 12px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.stecker pre a:first-of-type::before {
+	padding-top: 10px;
+}
+
+.stecker pre a:last-of-type::before {
+	padding-bottom: 10px;
+}
+
+.stecker pre a:only-of-type::before {
+	padding: 10px;
+}

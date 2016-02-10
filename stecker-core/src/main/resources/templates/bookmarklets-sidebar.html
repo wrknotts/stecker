@@ -1,0 +1,25 @@
+<!-- SCM Repositories and Bookmarklets supported by this instance of Stecker. -->
+<div>
+  <p class="instructions">
+    To add a bookmarklet to your browser, <u>Click and hold a bookmarklet button from the list below</u> then drag and drop into your browser bookmarks/favorites area.
+  </p>
+  {{#scmDescriptors}}
+  <table>
+    <caption>
+      <a href="{{value.homePageAddress}}" target="_blank"><img alt="{{key}}" src="{{value.repositoryImage}}" title="{{value.homePageAddress}}"></a>
+    </caption>
+    {{#value.bookmarklets}}
+    <tr>
+      <td class="link-button"><a href="{{{javaScriptFunction}}}" onclick="suppressDefault(event);">{{linkText}}</a></td>
+      <td>{{{description}}}</td>
+    </tr>
+    {{/value.bookmarklets}}
+  </table>
+  {{/scmDescriptors}}
+</div>
+
+<script type="text/javascript">
+	function suppressDefault(evt) {
+		evt.preventDefault();
+	}
+</script>

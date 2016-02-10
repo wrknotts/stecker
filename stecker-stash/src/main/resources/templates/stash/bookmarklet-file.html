@@ -1,0 +1,35 @@
+function addEmbedButton(targetNode, buttonText, address) {
+
+  // div
+  var container = document.createElement('div');
+  container.setAttribute('class', 'aui-buttons');
+
+  // button
+  var embedButton = document.createElement('input');
+  embedButton.setAttribute('type', 'button');
+  embedButton.setAttribute('class', 'aui-button');
+  embedButton.setAttribute('value', buttonText);
+  embedButton.onclick = function() {
+    prompt("Copy address to clipboard: Ctrl+C, Click OK or Cancel", address);          
+  };
+
+  // add button to div
+  container.appendChild(embedButton);
+
+  // add div to page
+  targetNode.appendChild(container);
+  
+}
+
+(function(){
+	
+   // get path to file
+   var filePath = location.pathname;
+
+   // find target element
+   var target = document.getElementsByClassName('primary');
+    
+  addEmbedButton(target[0], 'Embed as Script', '<script src="{{serverBaseAddress}}/stash/script' + filePath + '"></script>');
+  addEmbedButton(target[0], 'Embed as HTML', '{{serverBaseAddress}}/stash/html' + filePath);
+
+})();

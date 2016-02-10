@@ -1,0 +1,145 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>wrknotts</groupId>
+    <artifactId>stecker-parent</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  
+  <artifactId>stecker-core</artifactId>
+
+  <properties>
+    <jython-version>2.7.0</jython-version>
+    <pygments-version>2.0.2</pygments-version>
+  </properties>
+  
+  <dependencies>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+    </dependency>
+
+     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-cache</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jetty</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-mustache</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+    </dependency>
+  
+    <dependency>
+      <groupId>org.springframework.integration</groupId>
+      <artifactId>spring-integration-http</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.pygments</groupId>
+      <artifactId>pygments</artifactId>
+      <version>${pygments-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython-standalone</artifactId>
+      <version>${jython-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+    </dependency>
+
+  </dependencies>
+  
+  <build>
+  
+      <resources>
+
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+
+      <resource>
+        <directory>${basedir}/src/main/python</directory>
+      </resource>
+
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+      </resource>
+
+    </resources>
+
+    <plugins>
+    
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-css</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>stecker.util.pygments.CssStyleWriter</mainClass>
+          <arguments>
+            <argument>${project.build.directory}/classes/static/css</argument>
+            <argument>true</argument>
+          </arguments>
+          <!-- avoids: [WARNING] Warning: killAfter is now deprecated. Do you need it ? Please comment on MEXEC-6. -->
+          <killAfter>-1</killAfter>
+        </configuration>
+      </plugin>
+    
+    </plugins>
+
+  </build>
+</project>

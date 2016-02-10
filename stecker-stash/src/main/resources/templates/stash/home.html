@@ -1,0 +1,64 @@
+<!-- Home Page for Stash Repository Plugin -->
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<title>Stecker - Repository Plugin for Stash</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{serverBaseAddress}}/css/simplegrid.css" type="text/css" />
+<link rel="stylesheet" href="{{serverBaseAddress}}/css/stecker.css" type="text/css" />
+
+</head>
+
+<body>
+
+  {{>header-partial}}
+
+  <div class="grid grid-pad">
+
+    <div class="col-1-1">
+
+      <h2>CodeCloud Repository Plugin</h2>
+
+      <p>
+        This repository plugin for <a href="{{serverBaseAddress}}">Stecker</a> supports AT&T CodeCloud (Atlassian Stash).
+      </p>
+      <p>In addition to supporting source files stored in CodeCloud Project Repositories, this plugin is also able to support managed by the <a href="https://marketplace.atlassian.com/plugins/com.simplenia.stash.plugins.snippets/server/overview" target="_blank">Snippets Plugin</a>.</p>
+      <p>
+        CodeCloud is located at: <a href="{{scmEnvironment.baseAddress}}">{{scmEnvironment.baseAddress}}</a>
+      </p>
+
+      <a name="files"></a>
+      <h2>CodeCloud Repository Files</h2>
+      This plugin supports sharing of source code files that are stored in publicly-accessible Repositories managed by Stash.
+      <p>To use the bookmarklet for CodeCloud Files:</p>
+      <ol>
+        <li>Add the bookmarklet to your web browser.</li>
+        <li>Navigate to the file in CodeCloud that you want to share.</li>
+        <li>Click on the bookmarklet to add new buttons to the CodeCloud UI.</li>
+        <li>Click on one of these new buttons, to open a dialog box that will allow you to copy the Stecker URL to the clipboard.</li>
+        <li>Paste the Stecker URL now on the clipboard as appropriate.</li> 
+      </ol>
+      <p><img alt="CodeCloud Files UI" src="{{serverBaseAddress}}/images/File_Bookmarklet.png"></p>
+
+      <a name="snippets"></a>
+      <h2>CodeCloud Snippets</h2>
+      This plugin supports sharing of source code files that are stored in publicly-accessible Snippets managed by Stash.
+      <p>To use the bookmarklet for CodeCloud Snippets:</p>
+      <ol>
+        <li>Add the bookmarklet to your web browser.</li>
+        <li>Navigate to the snippet in CodeCloud that you want to share.</li>
+        <li>Click on the bookmarklet to add new elements to the CodeCloud UI.</li>
+        <li>Click on one of these new elements, then copy the Stecker URL to the clipboard.</li>
+        <li>Paste the Stecker URL now on the clipboard as appropriate.</li> 
+      </ol>
+      <p><img alt="CodeCloud Snippets UI" src="{{serverBaseAddress}}/images/Snippet_Bookmarklet.png"></p>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

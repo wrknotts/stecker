@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>wrknotts</groupId>
+    <artifactId>stecker-parent</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  <artifactId>stecker-stash</artifactId>
+  
+  <dependencies>
+  <dependency>
+  <groupId>wrknotts</groupId>
+  <artifactId>stecker-core</artifactId>
+  <version>${project.parent.version}</version>
+  </dependency>
+  </dependencies>
+  
+    <build>
+  
+      <resources>
+
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+
+      <resource>
+        <directory>src/main/config</directory>
+        <targetPath>config</targetPath>
+      </resource>
+
+    </resources>
+
+  </build>
+  
+</project>

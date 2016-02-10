@@ -1,0 +1,163 @@
+<!-- Stecker Home Page -->
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<title>Stecker - get plugged in</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/simplegrid.css" type="text/css" />
+<link rel="stylesheet" href="css/stecker.css" type="text/css" />
+<link rel="stylesheet" href="css/code.css" media="screen" />
+<link rel="stylesheet" href="css/pygments.css" media="screen" />
+
+</head>
+
+<body>
+
+{{>header-partial}}
+
+  <div class="grid">
+
+    <div class="col-9-12">
+      <div class="left">
+
+        <p>Stecker allows you to share source code from a public repository with a website, blog, wiki, collaboration tool, etc. in a nicely formatted way. If it delivers HTML pages, it should be able to use Stecker.</p>
+        <p>If your source code repository does not have a source code sharing or embedding feature, Stecker can provide that. If you manage code using multiple Source Code Management systems, Stecker can provide a consistent
+          presentation of the code stored across all of those systems.</p>
+        <p>
+          Supporting all of the <a href="http://pygments.org/languages/" target="_blank">programming languages</a> (which are implemented by <a href="http://pygments.org/docs/lexers/" target="_blank">lexers</a>) that are recognized by <a href="http://pygments.org" target="_blank">Pygments</a>, Stecker can:
+        </p>
+        <ul>
+          <li><b>Share Your Source Code</b> - you can <a href="#embed">embed source code</a> within an existing HTML page or share your code as a <a href="#complete">complete HTML page</a>.</li>
+          <li><b>Provide Bookmarklets To Decorate Repository Browsing Pages With Stecker URLs</b> - allows repository plugins to provide bookmarklets that make using Stecker with a specific repository easier. Typically, a bookmarklet
+            will inject Stecker URLs into the source code browsing pages of the repository.</li>
+          <li><b>Highlight Selected Lines</b> - you can specify any number of <a href="#highlight">lines to be highlighted</a> within a source file (or none at all). Individual lines as well as line ranges are supported.</li>
+          <li><b>Generate Line Number Anchor Links</b> - you can control which line number of a source file should be positioned into view.</li>
+          <li><b>Provide Links To View Source Code Directly In A Repository</b> - If your version control system allows you to view your source code through a web browser, each Stecker-formatted file can provide links directly to those
+            pages (including a <i>'raw'</i> view, if available).</li>
+        </ul>
+
+        <a name="url_components"></a>
+        <h3>Components of a Stecker URL</h3>
+        <p>Stecker defines a simple URL pattern that you use to control exactly how to format the source code as well as the repository where the code is located.</p>
+        The components of the Stecker URL are:
+        <ul>
+          <li><span class="mono">(scm_id)</span> - by convention, this path segment will indicate which SCM product is hosting the source code. A repository plugin for that SCM must be available when Stecker is deployed</li>
+          <li><span class="mono">(script/html)</span> - this path segment tells Stecker that it should return a either a script or a complete HTML page</li>
+          <li><span class="mono">(file_id)</span> - the unique identifier for the source code within the SCM. (The format of this identifier will vary by SCM product and is defined by repository plugins).</li>
+          <li><span class="mono">?hl[[n]]</span> - a query parameter that tells Stecker which lines within your source code should be highlighted. The value for this parameter can be a single line number (<span class="mono">?hl=3</span>),
+            a comma-separated list of line numbers (<span class="mono">?hl=3,4,10</span>) or a range of line numbers (<span class="mono">?hl=3-10</span>).<br />If the repository plugin supports returning multiple files for a request, this
+            parameter supports a bracket notation that allows you to apply highlighting to specific files (<span class="mono">?hl[0]=3&hl[2]=5-9</span> will highlight line <span class="mono">3</span> in the first file returned and lines <span
+            class="mono">5</span> through <span class="mono">9</span> in the third file returned)</li>
+        </ul>
+
+        <a name="using"></a>
+        <h2>Using Stecker To Share Source Code</h2>
+        <p>
+          There are a couple of options for available for including your source code, choose the one most appropriate for your needs: <a name="embed"></a>
+        <h3>
+          As an Embedded <span class="mono">&lt;script&gt;</span> Tag
+        </h3>
+        <p>
+          Use this option when you have direct access to the HTML of the target page. Using this option results in the page being updated when rendered in a web browser, inserting your source code at the point in the page where you've added
+          the <span class="mono">&lt;script&gt;</span> tag.
+        </p>
+        <p>
+          The highlighted line below demonstrates using the <span class="mono">&lt;script&gt;</span> tag option within a web page.
+        </p>
+
+        <div>{{#codeSamples}}{{{embed_using_script.html}}}{{/codeSamples}}</div>
+        <div class="stecker">
+          <span class="vanity"><span class="bold">embed_using_script.html</span>
+        </div>
+
+        <p>
+          When the <span class="mono">&lt;script&gt;</span> tag is processed by the browser, it will resolve the URL in the '<span class="mono">src</span>' attribute. This URL points to Stecker, which will return JavaScript to be executed
+          and insert your source code into the page.
+        </p>
+
+        <a name="complete"></a>
+        <h3>As a complete HTML Page</h3>
+        Use this option to have Stecker return a complete HTML page, containing your source code. This option can be useful when you simply want to share a link to your source code or if your collaboration tool does not support insertion of
+        a <span class="mono">&lt;script&gt;</span> tag into a page but supports insertion of an <span class="mono">&lt;iframe&gt;</span>.
+        <p>
+          With this option, the Stecker URL changes slightly, using '<span class="mono">html</span>' in the path instead of '<span class="mono">script</span>'. This URL can be entered into the address bar of your web browser or provided as
+          a clickable link to others (e.g. in an email message):
+        </p>
+
+        <div>{{#codeSamples}}{{{return_complete_html_page.txt}}}{{/codeSamples}}</div>
+        <div class="stecker">
+          <span class="vanity"><span class="bold">return_complete_html_page</span>
+        </div>
+
+        <a name="highlight"></a>
+        <h3>Highlighting Lines In A Source File</h3>
+        Stecker supports highlighting lines within a source file, which can help draw the attention of a reader. You tell Stecker which lines to highlight by providing the '<span class="mono">?hl</span>' query parameter in a Stecker URL.
+        <p>
+          The value for this parameter can be a single line number ('<span class="mono">?hl=3</span>'), a comma-separated list of line numbers ('<span class="mono">?hl=3,4,10</span>') or a range of line numbers ('<span class="mono">?hl=3-10</span>').
+        </p>
+        
+        <a name="highlight_single"></a>
+        <h4>Highlighting A Single Line</h4>
+        To highlight a single line in a source file, provide an '<span class="mono">hl</span>' query parameter that identifies the specific line to be highlighted:
+        
+        <div>{{#codeSamples}}{{{highlight_single_line.txt}}}{{/codeSamples}}</div>
+        <div class="stecker">
+          <span class="vanity"><span class="bold">highlight_single_line</span>
+        </div>
+
+        <a name="highlight_multiple"></a>
+        <h4>Highlighting Multiple Lines</h4>
+        To highlight a more than one individual line in a source file, provide an '<span class="mono">hl</span>' parameter that defines the specific line numbers to be highlighted:
+        
+        <div>{{#codeSamples}}{{{highlight_multiple_lines.txt}}}{{/codeSamples}}</div>
+        <div class="stecker">
+          <span class="vanity"><span class="bold">highlight_multiple_lines</span>
+        </div>
+
+        <a name="highlight_range"></a>
+        <h4>Highlighting A Line Range</h4>
+        To highlight sequential lines in a source file, provide an '<span class="mono">hl</span>' parameter that identifies the line number range:
+        
+        <div>{{#codeSamples}}{{{highlight_line_range.txt}}}{{/codeSamples}}</div>
+        <div class="stecker">
+          <span class="vanity"><span class="bold">highlight_line_range</span>
+        </div>
+
+        <p>
+        You can combine single, multiple and line ranges within the query parameter as well:
+        </p>
+        
+        <div>{{#codeSamples}}{{{countdown.R}}}{{/codeSamples}}</div>
+        <div class="stecker">
+          <span class="vanity"><span class="bold">countdown.R</span>
+        </div>
+        
+        <a name="highlight_multiple_files"></a>
+        <h4>Highlighting Multiple Files</h4>
+          If a repository plugin supports returning multiple files for a request, the '<span class="mono">hl</span>' parameter supports a bracket notation that allows you to apply highlighting to specific files.
+          <p>
+          Providing a query parameter of '<span class="mono">?hl[0]=3&hl[2]=5-9</span>' will:
+          </p>
+          <ul>
+            <li>highlight line <span class="mono">3</span> in the first file returned</li>
+            <li>highlight lines <span class="mono">5</span> through <span class="mono">9</span> in the third file returned</li>
+          </ul>
+
+      </div>
+
+    </div>
+
+    <div class="col-3-12">
+      <div class="right">
+        <h3 class="right-header">Repositories And Bookmarklets</h3>
+        {{>bookmarklets-sidebar}}
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

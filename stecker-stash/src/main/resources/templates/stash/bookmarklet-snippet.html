@@ -1,0 +1,36 @@
+function addEmbedLink(targetNode, headingText, address) {
+
+  // heading
+  var embedHeading = document.createElement('h5');
+  var embedHeadingText = document.createTextNode(headingText);
+  embedHeading.appendChild(embedHeadingText);
+      
+  // input
+  var embedInput = document.createElement('input');
+  embedInput.setAttribute('type', 'text');
+  embedInput.setAttribute('class', 'snippet-url-input quick-copy-text');
+  embedInput.setAttribute('spellcheck', 'false');
+  embedInput.setAttribute('readonly', 'readonly');
+  embedInput.setAttribute('value', address);
+
+  // add input to heading
+  embedHeading.appendChild(embedInput);
+
+  // add heading to page
+  targetNode.appendChild(embedHeading);
+  
+}
+
+(function(){
+	
+  // get script GUID
+  var pathSegments = window.location.pathname.split( '/' );
+  var guid = pathSegments[pathSegments.length - 1];
+
+  // find target element
+  var target = document.getElementsByClassName('snippet-share');
+    
+  addEmbedLink(target[0], 'Embed Script Url', '<script src="{{serverBaseAddress}}/stash/snippet/script/' + guid + '"></script>');
+  addEmbedLink(target[0], 'Embed HTML Url', '{{serverBaseAddress}}/stash/snippet/html/' + guid);
+  
+})();

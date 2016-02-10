@@ -1,0 +1,6 @@
+document.write('<link href=\"{{serverBaseAddress}}/css/code.css\" media=\"screen\" rel=\"stylesheet\" />')
+document.write('<link href=\"{{serverBaseAddress}}/css/{{stylesheet}}.css\" media=\"screen\" rel=\"stylesheet\" />')
+{{#descriptor.fileDescriptors}}
+document.write('{{{highlightedCode}}}')
+document.write('<div class=\"stecker\"><span class=\"vanity\">{{#name}}<span class=\"bold\">{{name}} </span>{{/name}}{{#descriptor.lastUpdated}}(Last Updated: {{descriptor.lastUpdated}}){{/descriptor.lastUpdated}}<span class=\"bold right\">{{#viewUri}}<a target=\"_blank\" href=\"{{viewUri}}\">view</a>{{/viewUri}}{{#viewRawUri}} / <a target=\"_blank\" href=\"{{viewRawUri}}\">raw</a>{{/viewRawUri}}</span></span></div>')
+{{/descriptor.fileDescriptors}}

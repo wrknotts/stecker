@@ -1,0 +1,22 @@
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Application Configuration
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+stecker:
+
+  # Number of minutes to cache retrieved source code. A value of 0 (zero)
+  # disables cache entirely
+  cacheMinutes: 1
+
+  # Name of stylesheet used to format source code. Provide name only (not
+  # '.css' file extension).
+  # Files will be served from /static/css
+  stylesheet:
+    name: pygments
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Logging Configuration
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+logging:
+  level.org: WARN
+  level.org.eclipse.jetty.server: INFO
+  level.org.eclipse.jetty.server.handler: WARN
